@@ -1,7 +1,7 @@
 {
-    "name": "bye-bye-fresh",
+    "name": "mvc-tech-blog",
     "version": "1.0.0",
-    "description": "",
+    "description": "MVC Tech Blog",
     "main": "server.js",
     "scripts": {
         "start": "node server.js",
