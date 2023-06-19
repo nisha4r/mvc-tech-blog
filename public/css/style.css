@@ -1,8 +1,27 @@
-header, .project:not(:last-child) {
+header,
+.project:not(:last-child) {
     border-bottom: 1px solid #ccc;
-  }
-  
-  .no-button {
+    background-color: #23100F;
+}
+
+header a {
+    color: #E7FBE2 !important;
+    text-decoration: none;
+}
+
+.header {
+    background-color: #E7FBE2;
+    box-shadow: 5px 5px #A7A7A7;
+    border-radius: 10px;
+}
+
+.header a {
+    color: #23100F !important;
+    text-decoration: none;
+
+}
+
+.no-button {
     background: none;
     border: none;
     padding: 0;
@@ -10,16 +29,9 @@ header, .project:not(:last-child) {
     color: #1b89bc;
     text-decoration: none;
     font-size: 100%;
-  }
-  
-  .no-button:hover {
+}
+
+.no-button:hover {
     color: #065b83;
     text-decoration: underline;
-  }
-  
-  .dollar-amount {
-    color: #056605;
-    font-weight: bold;
-    margin-left: -5px;
-  }
-  
+}
