@@ -13,26 +13,27 @@
 </head>
 
 <body>
-    <div class="flex-column justify-space-around">
-        <header class="display-flex justify-space-between align-center p-2">
-
-            <nav>
-                <a href="/">Home</a> |
-
-                <a href="/dashboard">Dashboard</a> |
-
-
-                <!-- Conditionally render login or logout links -->
-                {{#if logged_in}}
-                <a href="/login">Logout</a> |
-
-                {{else}}
-                <a href="/login">Login</a>
-                {{/if}}
-            </nav>
+    
+        <header class="p-2">
 
             <li>
-                <h1 class="header pl-2 pr-2">
+                <nav>
+                    <a href="/">Home</a> |
+
+                    <a href="/dashboard">Dashboard</a> |
+
+
+                    <!-- Conditionally render login or logout links -->
+                    {{#if logged_in}}
+                    <a href="/login">Logout</a> |
+
+                    {{else}}
+                    <a href="/login">Login</a>
+                    {{/if}}
+                </nav>
+            </li>
+            <li>
+                <h1 class="header col-3 pl-2 pr-2">
                     <a href="/">The Tech Blog</a>
                 </h1>
             </li>
@@ -44,7 +45,7 @@
         <footer>
 
         </footer>
-    </div>
+   
 
     <!-- Render script for logged in users only -->
     {{#if logged_in}}

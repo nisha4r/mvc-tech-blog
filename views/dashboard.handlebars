@@ -1,0 +1,25 @@
+{{#if blogposts.length}}
+<section>
+
+    {{#each blogposts as |blogpost|}}
+
+    <div class="card">
+        <div class="card-header">
+            <h4>{{title}}</h4>
+        </div>
+        <div>
+            <button class="btn btn-danger" id="update-btn"><i class="bi bi-trash"></i>Update</button>
+        </div>
+
+        <div>
+            <button class="btn btn-danger" id="delete-btn"><i class="bi bi-trash"></i>Delete</button>
+        </div>
+    </div>
+    <input type="hidden" name="blogpostid" value="{{blogpost.id}}" />
+    {{/each}}
+
+</section>
+{{/if}}
+<button type="submit" class="btn"><a href="/dashboard/create"><i class="bi bi-plus-square"></i>+ New Post</a></button>
+
+<script src="js/delete.js"></script>
