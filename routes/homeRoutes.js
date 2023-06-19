@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, Comment, User } = require('../models');
+const { BlogPost, Comment, User } = require('../models');
 const sequelize = require('../config/connection');
 const withAuth = require('../utils/auth');
 
@@ -7,12 +7,24 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
     console.log("homepage rendering");
     try {
-        const blogPostData = await Post.findAll({
-            where: {
-              userId: 5
-            }
-          });
-
+        const blogPostData = await BlogPost.findAll({
+            attributes: ['id', 'title', 'content', 'created_at'],
+            include: [
+                {
+                    model: Comment,
+                    attributes: ['id', 'comment', 'blogPostId', 'userId', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ['username'],
+                    },
+                },
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+            ],
+            order: [['created_at', 'DESC']],
+        })
         const blogposts = blogPostData.map((post) => post.get({ plain: true }));
         console.log(blogPostData);
         console.log(blogposts);
