@@ -3,6 +3,7 @@ const { BlogPost } = require('../models/BlogPost');
 const {Comment} = require('../models/Comment');
 const {User} = require('../models/User');
 const withAuth = require('../utils/auth');
+const sequelize = require('../config/connection');
 
 router.get('/', async (req, res) => {
     console.log("homepage rendering");
