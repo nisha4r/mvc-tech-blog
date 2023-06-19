@@ -19,6 +19,8 @@
    */
   body {
     margin: 0;
+   
+   
   }
   
   /**
@@ -26,6 +28,7 @@
    */
   main {
     display: block;
+   
   }
   
   /**
@@ -1087,12 +1090,13 @@
   
   .card .card-header {
     padding: 0.375rem;
-    background-color: #2d3e50;
+    background-color: #23100F;
     color: #d9e9e8;
   }
   
   .card .card-body {
     padding: 0.375rem;
+    background-color: #E7FBE2;
   }
   
   .card .card-footer {
