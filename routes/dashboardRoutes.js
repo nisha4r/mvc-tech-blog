@@ -1,16 +1,32 @@
 const router = require('express').Router();
 const { User, BlogPost, Comment } = require('../models');
 const withAuth = require('../utils/auth');
-module.exports = router;
+
 
 router.get('/', withAuth, (req, res) => {
-    BlogPost.findAll({}).then((data) => {
-        if (!data) {
-            res.status(404).json({ message: 'Get All Blog Post Failed' });
-            return;
-        }
-        const blogpost = data.get({ plain: true });
-        res.render('dashboard', { blogpost, loggedIn: true, username: req.session.username });
+    BlogPost.findAll({
+        where: {
+            userId: req.session.user_id,
+        },
+        attributes: ['id', 'title', 'content', 'created_at'],
+        order: [['created_at', 'DESC']],
+        include: [
+            {
+                model: Comment,
+                attributes: ['id', 'comment', 'blogPostId', 'userId', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username'],
+                },
+            },
+            {
+                model: User,
+                attributes: ['username'],
+            },
+        ],
+    }).then((data) => {
+        const blogposts = data.map((post) => post.get({ plain: true }));
+        res.render('dashboard', { blogposts, loggedIn: true, username: req.session.username,});
     })
         .catch((err) => {
             console.log(err);
@@ -21,7 +37,26 @@ router.get('/create', withAuth, (req, res) => {
     res.render('createblog', { username: req.session.username });
 });
 router.get('/update/:id', withAuth, (req, res) => {
-    BlogPost.findOne({})
+    BlogPost.findOne({
+        where: {
+            id: req.params.id,
+        },
+        attributes: ['id', 'title', 'content', 'created_at'],
+        include: [
+            {
+                model: User,
+                attributes: ['username'],
+            },
+            {
+                model: Comment,
+                attributes: ['id', 'comment', 'blogPostId', 'userId', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username'],
+                },
+            },
+        ],
+    })
         .then((updateData) => {
             if (!updateData) {
                 res.status(404).json({ message: 'Update Post Failed' });
@@ -36,3 +71,4 @@ router.get('/update/:id', withAuth, (req, res) => {
         });
 });
 
+module.exports = router;
