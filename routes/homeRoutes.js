@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { User } = require('../models/User');
+const { BlogPost, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-        const blogPostData = await Post.findAll({
+        const blogPostData = await BlogPost.findAll({
             attributes: ['id', 'title', 'content', 'created_at'],
             include: [
                 {
@@ -23,10 +23,10 @@ router.get('/', async (req, res) => {
             order: [['created_at', 'DESC']],
         })
 
-        const blogPosts = blogPostData.map((post) => post.get({ plain: true }));
+        const blogposts = blogPostData.map((post) => post.get({ plain: true }));
         // Pass serialized data and session flag into template
         res.render('homepage', {
-            blogPosts,
+            blogposts,
             logged_in: req.session.logged_in,
             username: req.session.username,
             userId: req.session.userId
