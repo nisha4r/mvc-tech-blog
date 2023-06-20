@@ -17,6 +17,12 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
+        const commentData = await Comment.findAll({ where: { id: req.params.id }, });
+        if (commentData.length === 0) {
+            res.status(404).json({ message: "No Comments Found" });
+            return;
+        }
+        res.status(200).json(commentData);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -24,6 +30,11 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', withAuth, async (req, res) => {
     try {
+        const commentData = await Comment.create({
+            ...req.body,
+            userId: req.session.user_id,
+        });
+        res.status(200).json({ commentData, success: true });
     } catch (err) {
         res.status(500).json(err);
     }
