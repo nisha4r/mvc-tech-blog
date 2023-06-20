@@ -4,6 +4,12 @@ const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
+        const commentData = await Comment.findAll({});
+        if (commentData.length === 0) {
+            res.status(404).json({ message: "No Comments Found" });
+            return;
+        }
+        res.status(200).json(commentData);
     } catch (err) {
         res.status(500).json(err);
     }
