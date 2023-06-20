@@ -54,4 +54,36 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+router.get('/post/:id', async (req, res) => {
+    try {
+        const blogPostData = await BlogPost.findOne({
+            where: { id: req.params.id },
+            attributes: ['id', 'content', 'title', 'created_at'],
+            include: [
+                {
+                    model: Comment,
+                    attributes: ['id', 'comment', 'postId', 'userId', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ['username'],
+                    },
+                },
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+            ],
+        });
+        if (dbPostData) {
+            const blogpost = blogPostData.get({ plain: true });
+            res.render('maincomment', { blogpost, loggedIn: req.session.loggedIn, username: req.session.username, })
+        } else {
+            res.status(404).json({ message: "No blog post found" });
+            return;
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;
