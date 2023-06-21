@@ -74,7 +74,7 @@ router.get('/post/:id', async (req, res) => {
                 },
             ],
         });
-        if (dbPostData) {
+        if (blogPostData) {
             const blogpost = blogPostData.get({ plain: true });
             res.render('maincomment', { blogpost, loggedIn: req.session.loggedIn, username: req.session.username, })
         } else {
