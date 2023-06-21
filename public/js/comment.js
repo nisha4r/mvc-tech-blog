@@ -1,4 +1,5 @@
-const blogPostId = document.querySelector('commentbtn').value;
+const blogPostId = document.querySelector('blogpost').value;
+const commentBtn = document.querySelector('commentbtn');
 
 
 const commentHandler = async (event) => {
@@ -16,10 +17,13 @@ const commentHandler = async (event) => {
                 'Content-Type': 'application/json'
             }
         });
-        if (response.ok) {
+        if (commentResponse.ok) {
             document.location.reload();
         } else {
-            alert(response.statusText);
+            alert(commentResponse.status);
         }
     }
 };
+
+if(commentBtn != null)
+commentBtn.addEventListener('click', commentHandler);
