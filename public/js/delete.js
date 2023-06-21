@@ -10,7 +10,7 @@ const deleteButtonHandler = async() =>{
     } else {
         alert(response.status);
     }
-}
+};
 
 if(deleteButton != null)
 deleteButton.addEventListener('click', deleteButtonHandler);

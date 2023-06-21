@@ -41,7 +41,7 @@ router.put('/:id', withAuth, async (req, res) => {
 router.delete('/:id', withAuth, async (req, res) => {
     try {
         const commentData = await Comment.destroy({
-            where: { postId: req.params.id },
+            where: { blogPostId: req.params.id },
         });
 
         const blogPostData = await BlogPost.destroy({

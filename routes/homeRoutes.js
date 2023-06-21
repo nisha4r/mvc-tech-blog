@@ -54,7 +54,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/blogpost/:id', async (req, res) => {
     try {
         const blogPostData = await BlogPost.findOne({
             where: { id: req.params.id },
@@ -76,7 +76,7 @@ router.get('/post/:id', async (req, res) => {
         });
         if (blogPostData) {
             const blogpost = blogPostData.get({ plain: true });
-            res.render('maincomment', { blogpost, loggedIn: req.session.loggedIn, username: req.session.username, })
+            res.render('maincomment', { blogpost, loggedIn: req.session.logged_in, username: req.session.username, })
         } else {
             res.status(404).json({ message: "No blog post found" });
             return;

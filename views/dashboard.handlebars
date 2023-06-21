@@ -5,19 +5,16 @@
 
     <div class="card">
         <div class="card-header">
-            <h4><a class="link" href="/dashboard/update/{{id}}"></a>{{title}}</a></h4>
-        </div>
-       
+            <h4><a class="link" href="/dashboard/update/{{id}}">{{title}}</a></h4>
+        </div>     
 
-        <div>
-            <button class="btn btn-secondary" id="delete-btn"><i class="bi bi-trash"></i>Delete</button>
-        </div>
+      
     </div>
     <input type="hidden" id="blogpostid" value="{{blogpost.id}}" />
     {{/each}}
 
 </section>
 {{/if}}
-<button type="submit" class="btn"><a href="/dashboard/create"><i class="bi bi-plus-square"></i>+ New Post</a></button>
+<button type="submit" class="btn btn-primary"><a href="/dashboard/create">+ New Post</a></button>
 
 <script src="js/delete.js"></script>

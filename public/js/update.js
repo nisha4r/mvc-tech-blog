@@ -13,7 +13,7 @@ const upateFormHandler = async (event) => {
             title,
             content,
         }),
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
         document.location.replace('/dashboard/');
@@ -21,5 +21,22 @@ const upateFormHandler = async (event) => {
         alert("error occurred!");
     }
 };
+const updateButton = document.querySelector('#update-btn');
+updateButton.addEventListener('click', upateFormHandler);
 
-document.querySelector('.updateform').addEventListener('submit', upateFormHandler);
+
+const deleteButton = document.querySelector('#delete-btn');
+
+const deleteButtonHandler = async () => {
+    const response = await fetch(`/api/blogpost/${id}`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert(response.status);
+    }
+};
+
+if (deleteButton != null)
+    deleteButton.addEventListener('click', deleteButtonHandler);
