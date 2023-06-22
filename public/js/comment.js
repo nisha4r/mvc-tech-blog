@@ -4,7 +4,6 @@ const commentBtn = document.querySelector('#commentbtn');
 
 const commentHandler = async (event) => {
     event.preventDefault;
-    debugger;
     const commentContent = document.querySelector('#comment-content').value.trim();
     console.log(commentContent);
     if (commentContent) {
