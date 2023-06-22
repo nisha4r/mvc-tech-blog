@@ -13,3 +13,7 @@ const logout = async () => {
   
   document.querySelector('#logout').addEventListener('click', logout);
   
+
+ function viewComment(id){
+  document.location.href = "/blogpost/"+id;
+ }

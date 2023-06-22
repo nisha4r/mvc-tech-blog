@@ -48,3 +48,25 @@ THEN I am signed out of the site
 WHEN I am idle on the site for more than a set time
 THEN I am able to view posts and comments but I am prompted to log in again before I can add, update, or delete posts
 ```
+## Screenshot
+![Tech Blog Demo](./public/images/MVC_Tech_Blog.gif)
+
+
+### 1. Home Page
+![Home Page](./public/images/homepage.png)
+
+### 2. Dashboard
+![Dashboard](./public/images/dashboard.png)
+
+### 3. Comments
+![New Comment](./public/images/newcomment.png)
+
+### 4. Update Post & Delete
+![Update Post](./public/images/updatepost.png)
+
+### 5. Login & Signup
+![Login and Singup](./public/images/login.png)
+
+## Heroku
+Deployed URL: 
+
