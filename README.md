@@ -68,5 +68,6 @@ THEN I am able to view posts and comments but I am prompted to log in again befo
 ![Login and Singup](./public/images/login.png)
 
 ## Heroku
-Deployed URL: 
+Deployed URL: https://nisha-tech-blog-057cb9b94783.herokuapp.com/
+
 
