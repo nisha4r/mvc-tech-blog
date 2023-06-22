@@ -1,28 +1,37 @@
-<p class="m-4">Login to comment</p>
 <div class="card m-4">
     <div class="card-header">
-        <h5 class="card-title float-left">{{blogpost.title}}</h5>
-        <h8 class="card-subtitle float-right">Posted by {{blogpost.user.username}} on {{formatDate blogpost.created_at}}</h6>
-    </div>  
-    <div class="card-body">  
+        <span>
+            <h5 class="card-title">{{blogpost.title}}</h5>
+            <h8 class="card-subtitle">Posted by {{blogpost.user.username}} on {{formatDate blogpost.created_at}}</h8>
+        </span>
+
+    </div>
+    <div class="card-body">
         <p class="card-text">{{blogpost.content}}</p>
     </div>
-    <div class="card-body comment">
-            {{> comment blogpost.comments}}
-    </div>
-</div> 
 
-<input type="hidden" name="blogpost" value="{{blogpost.id}}"/>
+</div>
+
+<div class="card m-4">
+    <div class="card-header p-2">Comment</div>
+    <div class="card-body">
+        <p class="card-text">{{> comment blogpost.comments}}</p>
+    </div>
+</div>
+
+<input type="hidden" id="blogpost" value="{{blogpost.id}}" />
 
 {{#if loggedIn}}
 <div class="card">
-    <div class="card-header"></div>
+    <div class="card-header p-4"></div>
     <form class="card-body commentform">
         <p class="form-label">Comment:</p>
-        <textarea class="form-input" id="comment-content" name="commentbody"></textarea>    
-        <button id="commentbtn"class="btn btn-secondary btn-block">Submit</button>        
-    </form>               
+        <textarea class="form-input" id="comment-content" name="commentbody"></textarea>
+        <button id="commentbtn" class="btn btn-secondary btn-block">Submit</button>
+    </form>
 </div>
+{{else}}
+<p class="m-4">Login to comment</p>
 {{/if}}
 
-<script src="./js/comment.js"></script>
+<script src="/js/comment.js"></script>
