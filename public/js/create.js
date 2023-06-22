@@ -15,7 +15,7 @@ const createpostFormHandler = async (event) => {
     if (response.ok) {
         document.location.replace('/dashboard');
     } else {
-        alert('Something wrong!');
+        alert(response.statusText);
     }
 };
 
